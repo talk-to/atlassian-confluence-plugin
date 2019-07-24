@@ -1,10 +1,11 @@
 .idea
+.DS_Store
 confluence.iml
+atlassian-confluence-plugin.iml
 /target/
 .mvn
 /src/main/resources/js/dev/package-lock.json
 /src/main/resources/js/dev/node_modules/
-
 
 /atlassian-connect-plugin/.idea
 /atlassian-connect-plugin/target
