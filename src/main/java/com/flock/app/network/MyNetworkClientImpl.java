@@ -1,7 +1,11 @@
 package com.flock.app.network;
 
+import com.atlassian.confluence.core.BodyContent;
+import com.atlassian.confluence.pages.Comment;
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.flock.app.Logger;
+import com.flock.app.serializer.BodyContentAdapter;
+import com.flock.app.serializer.CommentAdapter;
 import com.goebl.david.Webb;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,7 +22,10 @@ public class MyNetworkClientImpl implements MyNetworkClient {
     public MyNetworkClientImpl() {
         this.baseUrl = "https://webhook.site/4070acb6-3a53-4ff5-ac14-e105a55bfd19";
         webb = Webb.create();
-        gson = new GsonBuilder().create();
+        gson = new GsonBuilder()
+                .registerTypeAdapter(Comment.class, new CommentAdapter())
+                .registerTypeAdapter(BodyContent.class, new BodyContentAdapter())
+                .create();
         Logger.println("MyNetworkClientImpl Created");
     }
 
@@ -29,10 +36,12 @@ public class MyNetworkClientImpl implements MyNetworkClient {
     }
 
     private void makeHttpRequest(Object toSend) {
+        Logger.println("Serialized Object: " + gson.toJson(toSend));
         webb.post(baseUrl)
                 .param("param1", "a")
                 .param("param2", "b")
                 .param("param3", "c")
+                .param("paramBody", gson.toJson(toSend))
                 .ensureSuccess()
                 .asVoid();
     }

@@ -2,6 +2,8 @@ package com.flock.app.listener;
 
 import com.atlassian.confluence.core.ContentEntityObject;
 import com.atlassian.confluence.event.events.content.comment.CommentCreateEvent;
+import com.atlassian.confluence.event.events.content.comment.CommentRemoveEvent;
+import com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent;
 import com.atlassian.event.api.EventListener;
 import com.atlassian.event.api.EventPublisher;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
@@ -33,12 +35,19 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
     @EventListener
     public void commentCreateEvent(CommentCreateEvent event) {
         Logger.println("Comment Create Event: " + event);
-        String title = event.getComment().getDisplayTitle();
-        String commentBody = event.getComment().getBodyAsString();
+        myNetworkClient.makeEmptyPost(event);
+    }
 
-        ContentEntityObject contentObject = event.getComment();
+    @EventListener
+    public void commentCreateEvent(CommentRemoveEvent event) {
+        Logger.println("Comment Remove Event: " + event);
+        myNetworkClient.makeEmptyPost(event);
+    }
 
-        myNetworkClient.makeEmptyPost(contentObject);
+    @EventListener
+    public void commentUpdateEvent(CommentUpdateEvent event) {
+        Logger.println("Comment Update Event: " + event);
+        myNetworkClient.makeEmptyPost(event);
     }
 
     public void destroy() throws Exception {
