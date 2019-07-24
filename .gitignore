@@ -1,0 +1,17 @@
+.idea
+confluence.iml
+/target/
+.mvn
+/src/main/resources/js/dev/package-lock.json
+/src/main/resources/js/dev/node_modules/
+
+
+/atlassian-connect-plugin/.idea
+/atlassian-connect-plugin/target
+/atlassian-connect-plugin/atlassian-connect-plugin.iml
+/atlassian-connect-plugin/addon-db.tmp
+/atlassian-connect-plugin/addon-db.lck
+/atlassian-connect-plugin/src/main/resources/web/node_modules/
+/atlassian-connect-plugin/src/main/resources/web/.idea
+/atlassian-connect-plugin/src/main/resources/web/dist/
+/atlassian-connect-plugin/src/main/resources/web/package-lock.json
