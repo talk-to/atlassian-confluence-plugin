@@ -33,8 +33,7 @@ public class FlockSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("decorator", "confluence.userprofile.tab");
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=utf-8");
 
         String baseUrl = baseUrlStore.get();
         Logger.println("doGet, BaseUrl: " + baseUrl);

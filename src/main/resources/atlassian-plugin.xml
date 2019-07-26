@@ -2,18 +2,18 @@
     <plugin-info>
         <description>${project.description}</description>
         <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
         <param name="plugin-icon">images/pluginIcon.png</param>
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="confluence"/>
-    
+
     <!-- add our web resources -->
     <web-resource key="confluence-resources" name="confluence Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
+
         <resource type="download" name="confluence.css" location="/css/confluence.css"/>
         <resource type="download" name="confluence.js" location="/js/confluence.js"/>
         <resource type="download" name="images/" location="/images"/>
@@ -22,14 +22,14 @@
     </web-resource>
 
     <!-- Load FlockSettingsServlet -->
-    <servlet key="flockSettingsServlet" class="com.flock.app.ampstutorial.FlockSettingsServlet">
-        <url-pattern>/flock-settings</url-pattern>
+    <servlet key="flock-settings-servlet" class="com.flock.app.ampstutorial.FlockSettingsServlet">
+        <url-pattern>/flock/settings</url-pattern>
     </servlet>
 
-    <!-- Make flock-settings servlet visible in profile settings menu -->
-    <web-item key="config-link" section="system.userprofile.tab">
-        <link>/plugins/servlet/flock-settings</link>
-        <label key="Flock Configuration"/>
+    <web-item key="confluence-menu-item" name="XProduct Admin" section="system.admin/configuration" weight="1000">
+        <description>Link to xproduct-admin page.</description>
+        <label key="xproduct.admin.label"/>
+        <link linkId="xproduct-admin-link">/plugins/servlet/flock/settings</link>
     </web-item>
 
 </atlassian-plugin>
