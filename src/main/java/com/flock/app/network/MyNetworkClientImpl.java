@@ -1,48 +1,42 @@
 package com.flock.app.network;
 
-import com.atlassian.confluence.core.BodyContent;
-import com.atlassian.confluence.pages.Comment;
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
+import com.flock.app.ConfluenceActionType;
 import com.flock.app.Logger;
-import com.flock.app.serializer.BodyContentAdapter;
-import com.flock.app.serializer.CommentAdapter;
+import com.flock.app.pluginConfig.PluginConfig;
 import com.goebl.david.Webb;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @ExportAsService({MyNetworkClient.class})
 @Named
 public class MyNetworkClientImpl implements MyNetworkClient {
-    private final String baseUrl;
+    private static final String HEADER_ACTION_TYPE = "confluence-action-type";
     private final Webb webb;
     private final Gson gson;
+    private final PluginConfig pluginConfig;
 
-    public MyNetworkClientImpl() {
-        this.baseUrl = "https://webhook.site/4070acb6-3a53-4ff5-ac14-e105a55bfd19";
+    @Inject
+    public MyNetworkClientImpl(GsonProvider gsonProvider, PluginConfig pluginConfig) {
         webb = Webb.create();
-        gson = new GsonBuilder()
-                .registerTypeAdapter(Comment.class, new CommentAdapter())
-                .registerTypeAdapter(BodyContent.class, new BodyContentAdapter())
-                .create();
+        this.gson = gsonProvider.getGson();
+        this.pluginConfig = pluginConfig;
         Logger.println("MyNetworkClientImpl Created");
     }
 
     @Override
-    public void makeEmptyPost(Object toSend) {
-        Logger.println("MyNetworkClientImpl: makeEmptyPost");
-        makeHttpRequest(toSend);
-    }
-
-    private void makeHttpRequest(Object toSend) {
-        Logger.println("Serialized Object: " + gson.toJson(toSend));
-        webb.post(baseUrl)
-                .param("param1", "a")
-                .param("param2", "b")
-                .param("param3", "c")
-                .param("paramBody", gson.toJson(toSend))
-                .ensureSuccess()
-                .asVoid();
+    public void sendEventToServer(ConfluenceActionType confluenceActionType, Object toSend) {
+        try {
+            String body = gson.toJson(toSend);
+            Logger.println("Serialized Object: " + body);
+            webb.post(pluginConfig.getWebhookUrl())
+                    .body(body)
+                    .header(HEADER_ACTION_TYPE, confluenceActionType.getNameString())
+                    .ensureSuccess()
+                    .asVoid();
+        } catch (NullPointerException ignored) {
+        }
     }
 }
