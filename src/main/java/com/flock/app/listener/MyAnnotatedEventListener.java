@@ -28,9 +28,9 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
     private MyNetworkClient myNetworkClient;
 
     @Inject
-    public MyAnnotatedEventListener(@ConfluenceImport EventPublisher eventPublisher) {
+    public MyAnnotatedEventListener(@ConfluenceImport EventPublisher eventPublisher, MyNetworkClient myNetworkClient) {
         this.eventPublisher = eventPublisher;
-        this.myNetworkClient = null;
+        this.myNetworkClient = myNetworkClient;
         Logger.println("Listener Created");
     }
 
@@ -62,11 +62,6 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
     @EventListener
     public void pageCreateFromTempleteEvent(PageCreateFromTemplateEvent event) {
         myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_CREATE_FROM_TEMPLETE, event);
-    }
-
-    @EventListener
-    public void pageInfoViewEvent(PageInfoViewEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_INFO_VIEW, event);
     }
 
     @EventListener
@@ -111,52 +106,52 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
 
     @EventListener
     public void spaceCreateEvent(SpaceCreateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_CREATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_CREATE, event.getSpace());
     }
 
     @EventListener
     public void spaceArchivedEvent(SpaceArchivedEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_ARCHIVED, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_ARCHIVED, event.getSpace());
     }
 
     @EventListener
     public void spaceLogoUpdateEvent(SpaceLogoUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_LOGO_UPDATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_LOGO_UPDATE, event.getSpace());
     }
 
     @EventListener
     public void spacePermissionUpdateEvent(SpacePermissionsUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_PERMISSION_UPDATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_PERMISSION_UPDATE, event.getSpace());
     }
 
     @EventListener
     public void spaceRemoveEvent(SpaceRemoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_REMOVE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_REMOVE, event.getSpace());
     }
 
     @EventListener
     public void spaceTrashEmptyEvent(SpaceTrashEmptyEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_TRASH_EMPTY, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_TRASH_EMPTY, event.getSpace());
     }
 
     @EventListener
     public void spaceTrashViewEvent(SpaceTrashViewEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_TRASH_VIEW, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_TRASH_VIEW, event.getSpace());
     }
 
     @EventListener
     public void spaceUnarchivedEvent(SpaceUnArchivedEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_UNARCHIVED, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_UNARCHIVED, event.getSpace());
     }
 
     @EventListener
     public void spaceUpdateEvent(SpaceUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_UPDATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_UPDATE, event.getSpace());
     }
 
     @EventListener
     public void spaceWillREmoveEvent(SpaceWillRemoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_WILL_REMOVE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_WILL_REMOVE, event.getSpace());
     }
 
     public void destroy() throws Exception {

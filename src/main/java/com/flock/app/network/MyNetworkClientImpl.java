@@ -30,6 +30,7 @@ public class MyNetworkClientImpl implements MyNetworkClient {
     public void sendEventToServer(ConfluenceActionType confluenceActionType, Object toSend) {
         try {
             String body = gson.toJson(toSend);
+            Logger.println("ConfluenceActionType: " + confluenceActionType);
             Logger.println("Serialized Object: " + body);
             webb.post(pluginConfig.getWebhookUrl())
                     .body(body)
