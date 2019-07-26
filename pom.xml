@@ -10,12 +10,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Flock</name>
+        <url>http://www.flock.com/</url>
     </organization>
 
-    <name>confluence</name>
-    <description>This is the com.flock.app:confluence plugin for Atlassian Confluence.</description>
+    <name>Flock for Confluence</name>
+    <description>Plugin to connect Confluence with Flock for notifications.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
