@@ -51,8 +51,8 @@ public class PageAdapter implements JsonSerializer<Page> {
         jsonObject.add("bodyContents", jsonSerializationContext.serialize(page.getBodyContents(), new TypeToken<List<BodyContent>>() {
         }.getType()));
         jsonObject.addProperty("bodyAsString", page.getBodyAsString());
-        jsonObject.add("outgoingLinks", jsonSerializationContext.serialize(page.getOutgoingLinks(), new TypeToken<List<OutgoingLink>>() {
-        }.getType()));
+//        jsonObject.add("outgoingLinks", jsonSerializationContext.serialize(page.getOutgoingLinks(), new TypeToken<List<OutgoingLink>>() {
+//        }.getType()));
         jsonObject.add("referralLinks", jsonSerializationContext.serialize(page.getReferralLinks(), new TypeToken<List<ReferralLink>>() {
         }.getType()));
         jsonObject.add("trackBackLinks", jsonSerializationContext.serialize(page.getTrackbackLinks(), new TypeToken<List<TrackbackLink>>() {

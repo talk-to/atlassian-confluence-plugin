@@ -3,6 +3,8 @@ package com.flock.app.ampstutorial;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ConfluenceImport;
 import com.atlassian.templaterenderer.TemplateRenderer;
+import com.flock.app.Logger;
+import com.flock.app.Utils;
 import com.google.common.collect.ImmutableMap;
 import org.apache.http.util.TextUtils;
 
@@ -18,14 +20,14 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 @Scanned
 public class FlockSettingsServlet extends HttpServlet {
 
-    private final BaseUrlStore baseURlStore;
+    private final BaseUrlStore baseUrlStore;
     private final TemplateRenderer templateRenderer;
 
     @Inject
     public FlockSettingsServlet(
             BaseUrlStore baseUrlStore,
             @ConfluenceImport TemplateRenderer templateRenderer) {
-        this.baseURlStore = baseUrlStore;
+        this.baseUrlStore = baseUrlStore;
         this.templateRenderer = templateRenderer;
     }
 
@@ -34,7 +36,8 @@ public class FlockSettingsServlet extends HttpServlet {
         request.setAttribute("decorator", "confluence.userprofile.tab");
         response.setContentType("text/html");
 
-        String baseUrl = baseURlStore.get();
+        String baseUrl = baseUrlStore.get();
+        Logger.println("doGet, BaseUrl: " + baseUrl);
 
         templateRenderer.render("/templates/flockSettings.vm",
                 TextUtils.isEmpty(baseUrl) ? ImmutableMap.of() : ImmutableMap.of("baseUrl", baseUrl),
@@ -44,15 +47,16 @@ public class FlockSettingsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String baseUrl = request.getParameter("baseUrl");
+        Logger.println("doPost, BaseUrl: " + baseUrl);
 
-
-        if (!isNullOrEmpty(baseUrl)) {
+        if (!isNullOrEmpty(baseUrl) && Utils.isValidUrl(baseUrl)) {
             storeLoginRecord(baseUrl);
         }
+
         response.sendRedirect("./flock-settings");
     }
 
     private void storeLoginRecord(String baseUrl) {
-        baseURlStore.put(baseUrl);
+        baseUrlStore.put(baseUrl);
     }
 }
