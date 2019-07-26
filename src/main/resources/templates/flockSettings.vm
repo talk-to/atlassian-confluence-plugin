@@ -1,0 +1,29 @@
+#* @vtlvariable name="baseUrl" type="java.lang.String" *#
+<html>
+<head>
+    <meta name='profile.tab.key' content='com.example.ampstutorial.fecrutwitter:config-link'/>
+</head>
+<body>
+<div>
+    <form action="./flock-settings" method="post">
+        <table class="dialog-prefs" cellspacing="0">
+            <thead>
+            <tr>
+                <th colspan="2"><h3>Flock Settings</h3></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="tdLabel"><label for="baseUrl" class="label">Base Url:</label></td>
+                <td><input type="text" name="baseUrl" value="$!{baseUrl}" id="baseUrl"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="action"><input type="submit" value="Save"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

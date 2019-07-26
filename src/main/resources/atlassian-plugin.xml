@@ -20,5 +20,16 @@
 
         <context>confluence</context>
     </web-resource>
-    
+
+    <!-- Load FlockSettingsServlet -->
+    <servlet key="flockSettingsServlet" class="com.flock.app.ampstutorial.FlockSettingsServlet">
+        <url-pattern>/flock-settings</url-pattern>
+    </servlet>
+
+    <!-- Make flock-settings servlet visible in profile settings menu -->
+    <web-item key="config-link" section="system.userprofile.tab">
+        <link>/plugins/servlet/flock-settings</link>
+        <label key="Flock Configuration"/>
+    </web-item>
+
 </atlassian-plugin>
