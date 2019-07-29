@@ -16,6 +16,6 @@ public class BodyContentAdapter implements JsonSerializer<BodyContent> {
         jsonObject.addProperty("body", bodyContent.getBody());
         jsonObject.addProperty("bodyCleaned", bodyContent.isBodyCleaned());
         jsonObject.addProperty("bodyType", bodyContent.getBodyType().toString());
-        return null;
+        return jsonObject;
     }
 }

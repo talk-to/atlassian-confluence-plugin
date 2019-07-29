@@ -1,4 +1,4 @@
-package com.flock.app.ampstutorial;
+package com.flock.app.settings;
 
 /**
  * Interface for storing twitter authentication tokens for users.

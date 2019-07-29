@@ -1,4 +1,4 @@
-package com.flock.app.ampstutorial;
+package com.flock.app.settings;
 
 import com.atlassian.plugin.spring.scanner.annotation.imports.ConfluenceImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
@@ -17,7 +17,7 @@ public class BaseUrlStoreImpl implements BaseUrlStore {
     @Inject
     public BaseUrlStoreImpl(@ConfluenceImport PluginSettingsFactory pluginSettingsFactory) {
         this.pluginSettingsFactory = pluginSettingsFactory;
-        baseUrl = (String) pluginSettingsFactory.createGlobalSettings().get(Constants.KEY_WEEBHOOK_URL);
+        baseUrl = (String) pluginSettingsFactory.createGlobalSettings().get(Constants.KEY_WEB_HOOK_URL);
         Logger.println("BaseUrlStoreImpl Created, BaseUrl: " + baseUrl);
     }
 
@@ -29,7 +29,7 @@ public class BaseUrlStoreImpl implements BaseUrlStore {
     @Override
     public void put(String baseUrl) {
         this.baseUrl = baseUrl;
-        pluginSettingsFactory.createGlobalSettings().put(Constants.KEY_WEEBHOOK_URL, baseUrl);
+        pluginSettingsFactory.createGlobalSettings().put(Constants.KEY_WEB_HOOK_URL, baseUrl);
         Logger.println("BaseUrl Updated: " + baseUrl);
     }
 }

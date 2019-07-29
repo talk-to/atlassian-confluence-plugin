@@ -1,5 +1,6 @@
 package com.flock.app;
 
 public class Constants {
-    public static final String KEY_WEEBHOOK_URL = "key-weebhook-url";
+    private static final String PROJECT_PREFIX = "flock-for-confluence/";
+    public static final String KEY_WEB_HOOK_URL = PROJECT_PREFIX + "key-web-hook-url";
 }

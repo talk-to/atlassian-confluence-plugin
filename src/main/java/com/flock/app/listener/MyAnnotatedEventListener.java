@@ -51,57 +51,42 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
 
     @EventListener
     public void pageCreateEvent(PageCreateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_CREATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_CREATE, event.getPage());
     }
 
     @EventListener
     public void pageCopyEvent(PageCopyEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_COPY, event);
-    }
-
-    @EventListener
-    public void pageCreateFromTempleteEvent(PageCreateFromTemplateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_CREATE_FROM_TEMPLETE, event);
-    }
-
-    @EventListener
-    public void pageListViewEvent(PageListViewEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_LIST_VIEW, event);
-    }
-
-    @EventListener
-    public void pageMoveCompleteEvent(PageMoveCompletedEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_MOVE_COMPLETE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_COPY, event.getPage());
     }
 
     @EventListener
     public void pageMoveEvent(PageMoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_MOVE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_MOVE, event.getPage());
     }
 
     @EventListener
     public void pageRemoveEvent(PageRemoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_REMOVE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_REMOVE, event.getPage());
     }
 
     @EventListener
     public void pageRestoreEvent(PageRestoreEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_RESTORE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_RESTORE, event.getPage());
     }
 
     @EventListener
     public void pageTrashedEvent(PageTrashedEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_TRASHED, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_TRASHED, event.getPage());
     }
 
     @EventListener
     public void pageUpdateEvent(PageUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_UPDATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_UPDATE, event.getPage());
     }
 
     @EventListener
     public void pageViewEvent(PageViewEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_VIEW, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.PAGE_VIEW, event.getPage());
     }
 
     @EventListener

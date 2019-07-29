@@ -22,14 +22,14 @@
     </web-resource>
 
     <!-- Load FlockSettingsServlet -->
-    <servlet key="flock-settings-servlet" class="com.flock.app.ampstutorial.FlockSettingsServlet">
-        <url-pattern>/flock/settings</url-pattern>
+    <servlet key="flock-settings-servlet" class="com.flock.app.settings.FlockSettingsServlet">
+        <url-pattern>/flock-settings</url-pattern>
     </servlet>
 
     <web-item key="confluence-menu-item" name="XProduct Admin" section="system.admin/configuration" weight="1000">
         <description>Link to xproduct-admin page.</description>
         <label key="xproduct.admin.label"/>
-        <link linkId="xproduct-admin-link">/plugins/servlet/flock/settings</link>
+        <link linkId="xproduct-admin-link">/plugins/servlet/flock-settings</link>
     </web-item>
 
 </atlassian-plugin>

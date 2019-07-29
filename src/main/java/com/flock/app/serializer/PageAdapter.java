@@ -32,10 +32,10 @@ public class PageAdapter implements JsonSerializer<Page> {
         // AbstractPage
         jsonObject.addProperty("urlPath", page.getUrlPath());
         jsonObject.addProperty("editUrlPath", page.getEditUrlPath());
-        jsonObject.add("pageLevelComments", jsonSerializationContext.serialize(page.getPageLevelComments(), new TypeToken<List<Comment>>() {
-        }.getType()));
-        jsonObject.add("topLevelComments", jsonSerializationContext.serialize(page.getTopLevelComments(), new TypeToken<List<Comment>>() {
-        }.getType()));
+//        jsonObject.add("pageLevelComments", jsonSerializationContext.serialize(page.getPageLevelComments(), new TypeToken<List<Comment>>() {
+//        }.getType()));
+//        jsonObject.add("topLevelComments", jsonSerializationContext.serialize(page.getTopLevelComments(), new TypeToken<List<Comment>>() {
+//        }.getType()));
         jsonObject.addProperty("attachmentsUrlPath", page.getAttachmentsUrlPath());
         jsonObject.addProperty("confluenceRevision", page.getConfluenceRevision());
 
@@ -53,10 +53,10 @@ public class PageAdapter implements JsonSerializer<Page> {
         jsonObject.addProperty("bodyAsString", page.getBodyAsString());
 //        jsonObject.add("outgoingLinks", jsonSerializationContext.serialize(page.getOutgoingLinks(), new TypeToken<List<OutgoingLink>>() {
 //        }.getType()));
-        jsonObject.add("referralLinks", jsonSerializationContext.serialize(page.getReferralLinks(), new TypeToken<List<ReferralLink>>() {
-        }.getType()));
-        jsonObject.add("trackBackLinks", jsonSerializationContext.serialize(page.getTrackbackLinks(), new TypeToken<List<TrackbackLink>>() {
-        }.getType()));
+//        jsonObject.add("referralLinks", jsonSerializationContext.serialize(page.getReferralLinks(), new TypeToken<List<ReferralLink>>() {
+//        }.getType()));
+//        jsonObject.add("trackBackLinks", jsonSerializationContext.serialize(page.getTrackbackLinks(), new TypeToken<List<TrackbackLink>>() {
+//        }.getType()));
         jsonObject.addProperty("contentStatus", page.getContentStatus());
         jsonObject.addProperty("isCurrent", page.isCurrent());
         jsonObject.addProperty("isDeleted", page.isDeleted());
@@ -80,6 +80,7 @@ public class PageAdapter implements JsonSerializer<Page> {
         // EntityObject
         jsonObject.addProperty("id", page.getId());
         jsonObject.addProperty("lastModificationData", page.getLastModificationDate().getTime());
-        return null;
+
+        return jsonObject;
     }
 }

@@ -3,7 +3,7 @@ package com.flock.app.network;
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.flock.app.ConfluenceActionType;
 import com.flock.app.Logger;
-import com.flock.app.ampstutorial.BaseUrlStore;
+import com.flock.app.settings.BaseUrlStore;
 import com.goebl.david.Webb;
 import com.google.gson.Gson;
 
