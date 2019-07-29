@@ -36,17 +36,17 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
 
     @EventListener
     public void commentCreateEvent(CommentCreateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_CREATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_CREATE, event.getComment());
     }
 
     @EventListener
     public void commentRemoveEvent(CommentRemoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_REMOVE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_REMOVE, event.getComment());
     }
 
     @EventListener
     public void commentUpdateEvent(CommentUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_UPDATE, event);
+        myNetworkClient.sendEventToServer(ConfluenceActionType.COMMENT_UPDATE, event.getComment());
     }
 
     @EventListener
@@ -100,11 +100,6 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
     }
 
     @EventListener
-    public void spaceLogoUpdateEvent(SpaceLogoUpdateEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_LOGO_UPDATE, event.getSpace());
-    }
-
-    @EventListener
     public void spacePermissionUpdateEvent(SpacePermissionsUpdateEvent event) {
         myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_PERMISSION_UPDATE, event.getSpace());
     }
@@ -132,11 +127,6 @@ public class MyAnnotatedEventListener implements DisposableBean, InitializingBea
     @EventListener
     public void spaceUpdateEvent(SpaceUpdateEvent event) {
         myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_UPDATE, event.getSpace());
-    }
-
-    @EventListener
-    public void spaceWillREmoveEvent(SpaceWillRemoveEvent event) {
-        myNetworkClient.sendEventToServer(ConfluenceActionType.SPACE_WILL_REMOVE, event.getSpace());
     }
 
     public void destroy() throws Exception {

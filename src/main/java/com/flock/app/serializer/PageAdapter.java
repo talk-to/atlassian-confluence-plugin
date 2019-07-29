@@ -1,10 +1,6 @@
 package com.flock.app.serializer;
 
 import com.atlassian.confluence.core.BodyContent;
-import com.atlassian.confluence.links.OutgoingLink;
-import com.atlassian.confluence.links.ReferralLink;
-import com.atlassian.confluence.links.TrackbackLink;
-import com.atlassian.confluence.pages.Comment;
 import com.atlassian.confluence.pages.Page;
 import com.atlassian.confluence.spaces.Space;
 import com.google.gson.JsonElement;
