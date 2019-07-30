@@ -21,7 +21,7 @@ public enum ConfluenceActionType {
     SPACE_TRASH_EMPTY("space-trash-empty"),
     SPACE_TRASH_VIEW("space-trash-view"),
     SPACE_UNARCHIVED("space-unarchived"),
-    SPACE_UPDATE("space-update"),
+    SPACE_UPDATE("space-update");
 
     private String nameString;
 
