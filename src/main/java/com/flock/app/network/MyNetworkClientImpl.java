@@ -30,13 +30,16 @@ public class MyNetworkClientImpl implements MyNetworkClient {
     public void sendEventToServer(ConfluenceActionType confluenceActionType, Object toSend) {
         if (baseUrlStore.get() == null) return;
 
-        String body = gson.toJson(toSend);
-        Logger.println("ConfluenceActionType: " + confluenceActionType);
-        Logger.println("Serialized Object: " + body);
-        webb.post(baseUrlStore.get())
-                .body(body)
-                .header(HEADER_ACTION_TYPE, confluenceActionType.getNameString())
-                .ensureSuccess()
-                .asVoid();
+        try {
+            String body = gson.toJson(toSend);
+            webb.post(baseUrlStore.get())
+                    .body(body)
+                    .header(HEADER_ACTION_TYPE, confluenceActionType.getNameString())
+                    .ensureSuccess()
+                    .asVoid();
+            Logger.println("ConfluenceActionType: " + confluenceActionType);
+            Logger.println("Serialized Object: " + body);
+        } catch (Exception ignored) {
+        }
     }
 }

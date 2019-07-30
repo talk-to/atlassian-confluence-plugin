@@ -31,7 +31,7 @@ public class PageAdapter implements JsonSerializer<Page> {
         jsonObject.addProperty("attachmentsUrlPath", page.getAttachmentsUrlPath());
         jsonObject.addProperty("confluenceRevision", page.getConfluenceRevision());
         jsonObject.add("space", jsonSerializationContext.serialize(page.getSpace(), Space.class));
-        CommonSerializer.serializeContentEntityObject(jsonObject, page, jsonSerializationContext);
+        CommonSerializer.serialize(jsonObject, page, jsonSerializationContext);
         return jsonObject;
     }
 }

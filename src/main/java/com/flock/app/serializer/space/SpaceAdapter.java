@@ -19,7 +19,7 @@ public class SpaceAdapter implements JsonSerializer<Space> {
         jsonObject.addProperty("spaceType", space.getSpaceType().toString());
         jsonObject.addProperty("spaceStatus", space.getSpaceStatus().name());
         jsonObject.addProperty("description", space.getDescription().getDisplayTitle());
-        CommonSerializer.serializeEntityObject(jsonObject, space);
+        CommonSerializer.serialize(jsonObject, space, jsonSerializationContext);
         return jsonObject;
     }
 }

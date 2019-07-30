@@ -1,6 +1,7 @@
 package com.flock.app.serializer;
 
 import com.atlassian.confluence.core.BodyContent;
+import com.atlassian.confluence.core.ConfluenceEntityObject;
 import com.atlassian.confluence.core.ContentEntityObject;
 import com.atlassian.confluence.links.OutgoingLink;
 import com.atlassian.confluence.links.ReferralLink;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class CommonSerializer {
 
-    public static void serializeContentEntityObject(JsonObject jsonObject, ContentEntityObject contentEntityObject, JsonSerializationContext jsonSerializationContext) {
+    public static void serialize(JsonObject jsonObject, ContentEntityObject contentEntityObject, JsonSerializationContext jsonSerializationContext) {
         jsonObject.addProperty("contentId", contentEntityObject.getContentId().asLong());
         jsonObject.addProperty("title", contentEntityObject.getTitle());
         jsonObject.addProperty("lowerTitle", contentEntityObject.getLowerTitle());
@@ -46,7 +47,18 @@ public class CommonSerializer {
         serializeEntityObject(jsonObject, contentEntityObject);
     }
 
-    public static void serializeEntityObject(JsonObject jsonObject, EntityObject entityObject) {
+    public static void serialize(JsonObject jsonObject, ConfluenceEntityObject confluenceEntityObject, JsonSerializationContext jsonSerializationContext) {
+        jsonObject.add("creator", jsonSerializationContext.serialize(confluenceEntityObject.getCreator(), ConfluenceUser.class));
+        jsonObject.add("lastModifier", jsonSerializationContext.serialize(confluenceEntityObject.getLastModifier(), ConfluenceUser.class));
+
+        serializeEntityObject(jsonObject, confluenceEntityObject);
+    }
+
+    public static void serialize(JsonObject jsonObject, EntityObject entityObject, JsonSerializationContext jsonSerializationContext) {
+        serializeEntityObject(jsonObject, entityObject);
+    }
+
+    private static void serializeEntityObject(JsonObject jsonObject, EntityObject entityObject) {
         jsonObject.addProperty("id", entityObject.getId());
         jsonObject.addProperty("creationDate", entityObject.getCreationDate().getTime());
         jsonObject.addProperty("lastModificationDate", entityObject.getLastModificationDate().getTime());

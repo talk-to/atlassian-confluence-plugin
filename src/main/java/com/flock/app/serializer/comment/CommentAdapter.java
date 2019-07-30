@@ -19,7 +19,6 @@ public class CommentAdapter implements JsonSerializer<Comment> {
         jsonObject.addProperty("displayTitle", comment.getDisplayTitle());
         jsonObject.addProperty("urlPath", comment.getUrlPath());
         jsonObject.addProperty("type", comment.getType());
-        jsonObject.addProperty("nameForComparison", comment.getNameForComparison());
         jsonObject.addProperty("descendantsCount", comment.getDescendantsCount());
         jsonObject.addProperty("depth", comment.getDepth());
         jsonObject.addProperty("threadChangeDate", comment.getThreadChangedDate().getTime());
@@ -27,7 +26,7 @@ public class CommentAdapter implements JsonSerializer<Comment> {
         jsonObject.addProperty("isInlineComment", comment.isInlineComment());
         jsonObject.addProperty("lastModifier", comment.getStatus().getLastModifier());
         jsonObject.addProperty("commentStatus", comment.getStatus().getValue().getStringValue());
-        CommonSerializer.serializeContentEntityObject(jsonObject, comment, jsonSerializationContext);
+        CommonSerializer.serialize(jsonObject, comment, jsonSerializationContext);
         return jsonObject;
     }
 }
