@@ -21,6 +21,6 @@ public class TrackbackLinkAdapter implements JsonSerializer<TrackbackLink> {
         jsonObject.addProperty("lowerUrl", trackbackLink.getLowerUrl());
         jsonObject.addProperty("linkTitle", trackbackLink.getLinkTitle());
         CommonSerializer.serialize(jsonObject, trackbackLink, jsonSerializationContext);
-        return null;
+        return jsonObject;
     }
 }

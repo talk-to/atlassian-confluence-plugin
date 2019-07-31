@@ -19,6 +19,6 @@ public class OutgoingLinkAdapter implements JsonSerializer<OutgoingLink> {
         jsonObject.addProperty("lowerDestinationPageTitle", outgoingLink.getLowerDestinationPageTitle());
         jsonObject.addProperty("linkTitle", outgoingLink.getLinkTitle());
         CommonSerializer.serialize(jsonObject, outgoingLink, jsonSerializationContext);
-        return null;
+        return jsonObject;
     }
 }

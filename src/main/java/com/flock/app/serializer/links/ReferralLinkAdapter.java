@@ -18,6 +18,6 @@ public class ReferralLinkAdapter implements JsonSerializer<ReferralLink> {
         jsonObject.addProperty("lowerUrl", referralLink.getLowerUrl());
         jsonObject.addProperty("linkTitle", referralLink.getLinkTitle());
         CommonSerializer.serialize(jsonObject, referralLink, jsonSerializationContext);
-        return null;
+        return jsonObject;
     }
 }
