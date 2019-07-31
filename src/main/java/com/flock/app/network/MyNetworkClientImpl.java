@@ -33,9 +33,8 @@ public class MyNetworkClientImpl implements MyNetworkClient {
         try {
             String body = gson.toJson(toSend);
             webb.post(baseUrlStore.get())
-                    .body(body)
                     .header(HEADER_ACTION_TYPE, confluenceActionType.getNameString())
-                    .ensureSuccess()
+                    .body(body)
                     .asVoid();
             Logger.println("ConfluenceActionType: " + confluenceActionType);
             Logger.println("Serialized Object: " + body);
