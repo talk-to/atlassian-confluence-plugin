@@ -7,14 +7,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flock</groupId>
     <artifactId>confluence</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <organization>
         <name>Flock</name>
         <url>http://www.flock.com/</url>
     </organization>
 
-    <name>Flock for Confluence</name>
+    <name>Flock for ConfluenceFlock for Confluence</name>
     <description>Plugin to connect Confluence with Flock for notifications.</description>
     <packaging>atlassian-plugin</packaging>
 
