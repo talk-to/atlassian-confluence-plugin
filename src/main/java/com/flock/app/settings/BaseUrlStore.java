@@ -6,7 +6,9 @@ package com.flock.app.settings;
  */
 public interface BaseUrlStore {
 
-    String  get();
+    String get();
+
+    String getConfluenceBaseUrl();
 
     void put(String baseUrl);
 }

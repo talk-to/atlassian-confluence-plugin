@@ -14,6 +14,7 @@ import javax.inject.Named;
 @Named
 public class MyNetworkClientImpl implements MyNetworkClient {
     private static final String HEADER_ACTION_TYPE = "confluence-action-type";
+    private static final String HEADER_CONFLUENCE_BASE_URL = "confluence-base-url";
     private final Webb webb;
     private final Gson gson;
     private final BaseUrlStore baseUrlStore;
@@ -33,10 +34,12 @@ public class MyNetworkClientImpl implements MyNetworkClient {
         try {
             String body = gson.toJson(toSend);
             webb.post(baseUrlStore.get())
+                    .header(HEADER_CONFLUENCE_BASE_URL, baseUrlStore.getConfluenceBaseUrl())
                     .header(HEADER_ACTION_TYPE, confluenceActionType.getNameString())
                     .body(body)
                     .asVoid();
             Logger.println("ConfluenceActionType: " + confluenceActionType);
+            Logger.println("Confluence Base Url: " + baseUrlStore.getConfluenceBaseUrl());
             Logger.println("Serialized Object: " + body);
         } catch (Exception ignored) {
         }
