@@ -137,6 +137,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <includeExclude>-com.atlassian.plugin.spring.scanner.annotation.*</includeExclude>
                     <scannedDependencies>
                         <dependency>
                             <groupId>com.atlassian.plugin</groupId>
@@ -150,10 +151,10 @@
     </build>
 
     <properties>
-        <confluence.version>6.14.0</confluence.version>
-        <confluence.data.version>6.14.0</confluence.data.version>
-        <amps.version>8.0.2</amps.version>
-        <plugin.testrunner.version>2.0.1</plugin.testrunner.version>
+        <confluence.version>7.20.2</confluence.version>
+        <confluence.data.version>7.20.2</confluence.data.version>
+        <amps.version>8.1.2</amps.version>
+        <plugin.testrunner.version>2.0.2</plugin.testrunner.version>
         <atlassian.spring.scanner.version>1.2.13</atlassian.spring.scanner.version>
         <!-- This property ensures consistency between the key in atlassian-plugin.xml and the OSGi bundle's key. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
