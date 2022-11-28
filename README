@@ -6,6 +6,10 @@ Here are the SDK commands you'll use immediately:
 * atlas-debug -- same as atlas-run, but allows a debugger to attach at port 5005
 * atlas-help  -- prints description for all commands in the SDK
 
+Test credentials:
+Username: admin
+Password: admin
+
 Full documentation is always available at:
 
 https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugin+SDK
